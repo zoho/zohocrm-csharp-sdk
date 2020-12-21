@@ -203,7 +203,7 @@ namespace Com.Zoho.Crm.Sample.Fields
                             }
                             
                             //Get the Object obtained Currency instance
-                            Currency currency = field.Currency;
+                            Com.Zoho.Crm.API.Fields.Currency currency = field.Currency;
                             
                             //Check if currency is not null
                             if(currency != null)
@@ -728,7 +728,7 @@ namespace Com.Zoho.Crm.Sample.Fields
                             }
                             
                             //Get the Object obtained Currency instance
-                            Currency currency = field.Currency;
+                            Com.Zoho.Crm.API.Fields.Currency currency = field.Currency;
                             
                             //Check if currency is not null
                             if(currency != null)

@@ -325,7 +325,7 @@ namespace Com.Zoho.Crm.Sample.Users
                             Console.WriteLine("User FullName: " + user.FullName);
                             
                             //Get the list of obtained Territory instances
-                            List<Territory> territories = user.Territories;
+                            List<Com.Zoho.Crm.API.Users.Territory> territories = user.Territories;
                             
                             //Check if territories is not null
                             if(territories != null)
@@ -1091,7 +1091,7 @@ namespace Com.Zoho.Crm.Sample.Users
                             Console.WriteLine("User FullName: " + user.FullName);
                             
                             //Get the list of obtained Territory instances
-                            List<Territory> territories = user.Territories;
+                            List<Com.Zoho.Crm.API.Users.Territory> territories = user.Territories;
                             
                             //Check if territories is not null
                             if(territories != null)

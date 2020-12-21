@@ -1,4 +1,23 @@
-# Zoho CRM C# SDK
+# ZOHO CRM C# SDK
+
+## Table Of Contents
+
+* [Overview](#overview)
+* [Registering a Zoho Client](#registering-a-zoho-client)
+* [Environmental Setup](#environmental-setup)
+* [Including the SDK in your project](#including-the-sdk-in-your-project)
+* [Persistence](#token-persistence)
+  * [DataBase Persistence](#database-persistence)
+  * [File Persistence](#file-persistence)
+  * [Custom Persistence](#custom-persistence)
+* [Configuration](#configuration)
+* [Initialization](#initializing-the-application)
+* [Class Hierarchy](#class-hierarchy)
+* [Responses And Exceptions](#responses-and-exceptions)
+* [Threading](#threading-in-the-c#-sdk)
+  * [Multithreading in a Multi-User App](#multithreading-in-a-multi-user-app)
+  * [Multi-threading in a Single User App](#multi-threading-in-a-single-user-app)
+* [Sample Code](#sdk-sample-code)
 
 ## Overview
 
@@ -72,11 +91,11 @@ Token persistence refers to storing and utilizing the authentication tokens that
 
 ### Table of Contents
 
-- DataBase Persistence
+- [DataBase Persistence](#database-persistence)
 
-- File Persistence
+- [File Persistence](#file-persistence)
 
-- Custom Persistence
+- [Custom Persistence](#custom-persistence)
 
 ### Implementing OAuth Persistence
 
@@ -223,7 +242,7 @@ namespace user.store
 
 ## Configuration
 
-Before you get started with creating your Java application, you need to register your client and authenticate the app with Zoho.
+Before you get started with creating your C# application, you need to register your client and authenticate the app with Zoho.
 
 - Create an instance of **[Logger](Resources/Logger/Logger.md#logger)** Class to log exception and API information.
 
@@ -539,11 +558,11 @@ All other exceptions such as SDK anomalies and other unexpected behaviours are t
 
 ## Threading in the C# SDK
 
-Threads in a C# program help you achieve parallelism. By using multiple threads, you can make a Java program run faster and do multiple things simultaneously.
+Threads in a C# program help you achieve parallelism. By using multiple threads, you can make a C# program run faster and do multiple things simultaneously.
 
 The **C# SDK** (from version 3.x.x) supports both single threading and multi-threading irrespective of a single user or a multi-user app.
 
-### Multithreading in a Multi-user App
+### Multithreading in a Multi-User App
 
 Multi-threading for multi-users is achieved using Initializer's static **SwitchUser()**.
 
