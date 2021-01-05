@@ -1231,7 +1231,12 @@ namespace Com.Zoho.Crm.API.Util
 
             for (int nameIndex = index; nameIndex < name.Count; nameIndex++)
             {
-                string firstLetterUppercase = string.Concat(name[nameIndex].Substring(0, 1).ToUpper(), name[nameIndex].Substring(1));
+                string firstLetterUppercase = "";
+
+                if (name[nameIndex].Length > 0)
+                {
+                    firstLetterUppercase = string.Concat(name[nameIndex].Substring(0, 1).ToUpper(), name[nameIndex].Substring(1));
+                }
 
                 sdkName = string.Concat(sdkName, firstLetterUppercase);
             }

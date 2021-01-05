@@ -956,13 +956,13 @@ namespace Com.Zoho.Crm.API.Util
                 return;
             }
 
-            string[] fieldAPINamesString = new string[] { "textarea", "text", "website", "email", "phone", "mediumtext", "multiselectlookup", "profileimage"};
+            string[] fieldAPINamesString = new string[] { "textarea", "text", "website", "email", "phone", "mediumtext", "multiselectlookup", "profileimage", "autonumber"};
 
             string[] fieldAPINamesInteger = new string[] { "integer" };
 
             string[] fieldAPINamesBoolean = new string[] { "boolean" };
 
-            string[] fieldAPINamesLong = new string[] { "long", "bigint" , "autonumber" };
+            string[] fieldAPINamesLong = new string[] { "long", "bigint" };
 
             string[] fieldAPINamesDouble = new string[] { "double", "percent", "lookup", "currency" };
 

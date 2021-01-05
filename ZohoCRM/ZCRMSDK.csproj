@@ -17,7 +17,7 @@
 		</NuGetPackageImportStamp>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageId>ZCRMSDK</PackageId>
-		<PackageVersion>3.0.0</PackageVersion>
+		<PackageVersion>3.0.1</PackageVersion>
 		<Authors>Zoho CRM API Team</Authors>
 		<Owners>Zoho CRM API Team</Owners>
 		<Description>Provides C# SDK support for Zoho CRM APIs.</Description>
@@ -25,14 +25,7 @@
 		<Summary>C# SDK offers a way to create client C# applications that can be integrated with Zoho CRM. This SDK makes the access and use of necessary CRM APIs with ease.</Summary>
 		<PackageTags>ZCRMSDK,zohocrm,sdk,zcrmsdk,zoho</PackageTags>
 		<Title>ZCRMSDK</Title>
-		<PackageReleaseNotes>Version 3 is a new major version of the SDK that represents a significant effort to improve the capabilities of the SDK, incorporate customer feedback, upgrade our dependencies, improve performance, and adopt the latest C# standards.
-The basic usage pattern of the SDK has changed from Version 2 to Version 3. Refer to the samples
-The SDK is highly structured to ensure easy access to all the components.
-
-Each CRM entity is represented by a package, and each package contains an Operations Class that incorporates methods to perform all possible operations over that entity.
-SDKException - A wrapper class to wrap all exceptions such as SDK anomalies and other unexpected behaviours
-StreamWrapper - A wrapper class for File operations.
-APIResponse - A common response instance for all the SDK method calls.</PackageReleaseNotes>
+		<PackageReleaseNotes>Handled different field types.</PackageReleaseNotes>
   	</PropertyGroup>
   	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<Optimize>true</Optimize>

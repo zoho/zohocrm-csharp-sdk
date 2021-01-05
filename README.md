@@ -1,4 +1,23 @@
-# Zoho CRM C# SDK
+# ZOHO CRM C# SDK
+
+## Table Of Contents
+
+* [Overview](#overview)
+* [Registering a Zoho Client](#registering-a-zoho-client)
+* [Environmental Setup](#environmental-setup)
+* [Including the SDK in your project](#including-the-sdk-in-your-project)
+* [Persistence](#token-persistence)
+  * [DataBase Persistence](#database-persistence)
+  * [File Persistence](#file-persistence)
+  * [Custom Persistence](#custom-persistence)
+* [Configuration](#configuration)
+* [Initialization](#initializing-the-application)
+* [Class Hierarchy](#class-hierarchy)
+* [Responses And Exceptions](#responses-and-exceptions)
+* [Threading](#threading-in-the-c#-sdk)
+  * [Multithreading in a Multi-User App](#multithreading-in-a-multi-user-app)
+  * [Multi-threading in a Single User App](#multi-threading-in-a-single-user-app)
+* [Sample Code](#sdk-sample-code)
 
 ## Overview
 
@@ -37,7 +56,7 @@ You can include the SDK to your project using:
     - Package Manager
 
         ```sh
-        Install-Package ZCRMSDK -Version 3.0.0
+        Install-Package ZCRMSDK -Version 3.0.1
         Install-Package MySql.Data -Version 6.9.12
         Install-Package Newtonsoft.Json -Version 11.0.1
         ```
@@ -45,7 +64,7 @@ You can include the SDK to your project using:
     - .NET  CLI
 
         ```sh
-        dotnet add package ZCRMSDK --version 3.0.0
+        dotnet add package ZCRMSDK --version 3.0.1
         dotnet add package Newtonsoft.Json --version 11.0.1
         dotnet add package MySql.Data --version 6.9.12
         ```
@@ -56,7 +75,7 @@ You can include the SDK to your project using:
 
         ```sh
         <ItemGroup>
-            <PackageReference Include="ZCRMSDK" Version="3.0.0" />
+            <PackageReference Include="ZCRMSDK" Version="3.0.1" />
             <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
             <PackageReference Include="MySql.Data" Version="6.9.12" />
         </ItemGroup>
@@ -72,11 +91,11 @@ Token persistence refers to storing and utilizing the authentication tokens that
 
 ### Table of Contents
 
-- DataBase Persistence
+- [DataBase Persistence](#database-persistence)
 
-- File Persistence
+- [File Persistence](#file-persistence)
 
-- Custom Persistence
+- [Custom Persistence](#custom-persistence)
 
 ### Implementing OAuth Persistence
 
@@ -223,7 +242,7 @@ namespace user.store
 
 ## Configuration
 
-Before you get started with creating your Java application, you need to register your client and authenticate the app with Zoho.
+Before you get started with creating your C# application, you need to register your client and authenticate the app with Zoho.
 
 - Create an instance of **[Logger](Resources/Logger/Logger.md#logger)** Class to log exception and API information.
 
@@ -539,11 +558,11 @@ All other exceptions such as SDK anomalies and other unexpected behaviours are t
 
 ## Threading in the C# SDK
 
-Threads in a C# program help you achieve parallelism. By using multiple threads, you can make a Java program run faster and do multiple things simultaneously.
+Threads in a C# program help you achieve parallelism. By using multiple threads, you can make a C# program run faster and do multiple things simultaneously.
 
 The **C# SDK** (from version 3.x.x) supports both single threading and multi-threading irrespective of a single user or a multi-user app.
 
-### Multithreading in a Multi-user App
+### Multithreading in a Multi-User App
 
 Multi-threading for multi-users is achieved using Initializer's static **SwitchUser()**.
 
