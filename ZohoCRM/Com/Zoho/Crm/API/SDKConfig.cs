@@ -16,6 +16,8 @@ namespace Com.Zoho.Crm.API
 
 			private bool pickListValidation = true;
 
+			private int timeout = 100000;//The number of milliseconds to wait before the request times out. The default value is 100,000 milliseconds (100 seconds).
+
 			/// <summary>
 			/// This is a setter method to set autoRefreshFields.
 			/// </summary>
@@ -41,12 +43,26 @@ namespace Com.Zoho.Crm.API
 			}
 
 			/// <summary>
+			/// This is a setter method to set timeout.
+			/// </summary>
+			/// <param name="timeout">A int</param>
+			/// <returns>An instance of Builder</returns>
+			public Builder Timeout(int timeout)
+			{
+				this.timeout = timeout;
+
+				this.timeout = timeout != 100 ? timeout: 100;
+
+				return this;
+			}
+
+			/// <summary>
 			/// The method to build the SDKConfig instance
 			/// </summary>
 			/// <returns>An instance of SDKConfig</returns>
 			public SDKConfig Build()
 			{
-				return new SDKConfig(autoRefreshFields, pickListValidation);
+				return new SDKConfig(autoRefreshFields, pickListValidation, timeout);
 			}
 		}
 
@@ -54,16 +70,21 @@ namespace Com.Zoho.Crm.API
 
 		private bool pickListValidation;
 
+		private int timeout = 100000;
+
 		/// <summary>
 		/// Creates an instance of SDKConfig with the given parameters
 		/// </summary>
 		/// <param name="autoRefreshFields">A boolean representing autoRefreshFields</param>
 		/// <param name="pickListValidation">A boolean representing pickListValidation</param>
-		private SDKConfig(bool autoRefreshFields, bool pickListValidation)
+		/// <param name="timeout">A int representing timeout</param>
+		private SDKConfig(bool autoRefreshFields, bool pickListValidation, int timeout)
 		{
 			this.autoRefreshFields = autoRefreshFields;
 
 			this.pickListValidation = pickListValidation;
+
+			this.timeout = timeout;
 		}
 
 		/// <summary>
@@ -87,6 +108,18 @@ namespace Com.Zoho.Crm.API
 			get
 			{
 				return pickListValidation;
+			}
+		}
+
+		/// <summary>
+		/// This is a getter method to get timeout.
+		/// </summary>
+		/// <returns>A int representing timeout</returns>
+		public int Timeout
+		{
+			get
+			{
+				return timeout;
 			}
 		}
 	}

@@ -99,7 +99,7 @@ namespace Com.Zoho.Crm.API.Util
 
         public static readonly string ZOHO_SDK = "X-ZOHO-SDK";
 
-        public static readonly string SDK_VERSION = "3.0.1";
+        public static readonly string SDK_VERSION = "3.1.0";
 
         public static readonly string MODULEPACKAGENAME = "modulePackageName";
 
@@ -184,6 +184,10 @@ namespace Com.Zoho.Crm.API.Util
         public static readonly string CSHARP_DECIMAL_NAME = "System.Decimal";
 
         public static readonly string CSHARP_OBJECT_NAME = "System.Object";
+
+        public static readonly string GIVEN_TYPE = "given-type";
+
+        public static readonly string TYPE_ERROR = "TYPE ERROR";
 
         public static readonly string STRUCTURE_NAME = "structure_name";
 
@@ -485,14 +489,14 @@ namespace Com.Zoho.Crm.API.Util
         public static readonly string API_NAME = "api_name";
 
         public static readonly int NO_CONTENT_STATUS_CODE = 204;
-        
+
         public static readonly int NOT_MODIFIED_STATUS_CODE = 304;
 
         public static readonly string HREF = "href";
 
         public static readonly string API_EXCEPTION = "API_EXCEPTION";
 
-        public static readonly List<string> KEYSTOSKIP = new List<string>(){"Created_Time", "Modified_Time", "Created_By", "Modified_By", "Tag"};
+        public static readonly List<string> KEYSTOSKIP = new List<string>() { "Created_Time", "Modified_Time", "Created_By", "Modified_By", "Tag" };
 
         public static readonly string LINE_TAX = "$line_tax";
 
@@ -537,8 +541,8 @@ namespace Com.Zoho.Crm.API.Util
         public static readonly string NULL_VALUE = "null";
 
         public static readonly string UNSUPPORTED_IN_API = "API UNSUPPORTED OPERATION";
-	
-	    public static readonly string UNSUPPORTED_IN_API_MESSAGE = " Operation is not supported by API";
+
+        public static readonly string UNSUPPORTED_IN_API_MESSAGE = " Operation is not supported by API";
 
         public static readonly string NOTES = "Notes";
 
@@ -551,18 +555,18 @@ namespace Com.Zoho.Crm.API.Util
         public static readonly string PICKLIST = "picklist";
 
         public static readonly string HEADER_NULL_ERROR = "NULL HEADER ERROR";
-	
-	    public static readonly string PARAM_NAME_NULL_ERROR = "NULL PARAM NAME ERROR";
-	
-	    public static readonly string HEADER_NAME_NULL_ERROR = "NULL HEADER NAME ERROR";
-	
-	    public static readonly string PARAM_NAME_NULL_ERROR_MESSAGE = "Param Name MUST NOT be null";
-	
-	    public static readonly string HEADER_NAME_NULL_ERROR_MESSAGE = "Header Name MUST NOT be null";
+
+        public static readonly string PARAM_NAME_NULL_ERROR = "NULL PARAM NAME ERROR";
+
+        public static readonly string HEADER_NAME_NULL_ERROR = "NULL HEADER NAME ERROR";
+
+        public static readonly string PARAM_NAME_NULL_ERROR_MESSAGE = "Param Name MUST NOT be null";
+
+        public static readonly string HEADER_NAME_NULL_ERROR_MESSAGE = "Header Name MUST NOT be null";
 
         public static readonly string PARAM_INSTANCE_NULL_ERROR = "Param<T> Instance MUST NOT be null";
-	
-	    public static readonly string HEADER_INSTANCE_NULL_ERROR = "Header<T> Instance MUST NOT be null";
+
+        public static readonly string HEADER_INSTANCE_NULL_ERROR = "Header<T> Instance MUST NOT be null";
 
         public static readonly string NULL_VALUE_ERROR_MESSAGE = " MUST NOT be null";
 
@@ -589,30 +593,36 @@ namespace Com.Zoho.Crm.API.Util
         public static readonly string CONSENT_NAMESPACE = "Com.Zoho.Crm.API.Record.Consent";
 
         public static readonly string PROXY_SETTINGS = "Proxy settings - ";
-	
-	    public static readonly string PROXY_HOST = "Host: ";
-	
-	    public static readonly string PROXY_PORT = "Port: ";
-	
-	    public static readonly string PROXY_USER = "User: ";
-	
-	    public static readonly string PROXY_DOMAIN = "Domain: ";
+
+        public static readonly string PROXY_HOST = "Host: ";
+
+        public static readonly string PROXY_PORT = "Port: ";
+
+        public static readonly string PROXY_USER = "User: ";
+
+        public static readonly string PROXY_DOMAIN = "Domain: ";
 
         public static readonly string USER_MAIL_NULL_ERROR = "USER MAIL NULL ERROR";
-	
-	    public static readonly string USER_MAIL_NULL_ERROR_MESSAGE = "User Mail MUST NOT be null. Use setUserMail() to set value.";
+
+        public static readonly string USER_MAIL_NULL_ERROR_MESSAGE = "User Mail MUST NOT be null. Use setUserMail() to set value.";
 
         public static readonly string JSON_FILE_EXTENSION = ".json";
 
         public static readonly string SDK_CONFIG_ERROR_MESSAGE = "sdkConfig MUST NOT be null.";
 
         public static readonly string FILE_ERROR = "file_error";
-        
+
         public static readonly string FILE_DOES_NOT_EXISTS = "file does not exists";
 
         public static readonly string GIVEN_LENGTH = "given-length";
 
         public static readonly string CONSENT_LOOKUP = "consent_lookup";
+
+        public static readonly string GIVEN_VALUE = "given-value";
+
+        public static readonly List<string> IS_GENERATE_REQUEST_BODY = new List<string>() { Constants.REQUEST_METHOD_PATCH, Constants.REQUEST_METHOD_POST, Constants.REQUEST_METHOD_PUT };
+
+        public static readonly string RESOURCE_PATH_INVALID_ERROR_MESSAGE = "Resource Path MUST be a valid directory.";
 
         //TODO: Write enum class for RequestMethod and ResponseCode and implement their functions;
 

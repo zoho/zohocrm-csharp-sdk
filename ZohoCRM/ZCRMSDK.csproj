@@ -17,7 +17,7 @@
 		</NuGetPackageImportStamp>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageId>ZCRMSDK</PackageId>
-		<PackageVersion>3.0.1</PackageVersion>
+		<PackageVersion>3.1.0</PackageVersion>
 		<Authors>Zoho CRM API Team</Authors>
 		<Owners>Zoho CRM API Team</Owners>
 		<Description>Provides C# SDK support for Zoho CRM APIs.</Description>
@@ -25,7 +25,7 @@
 		<Summary>C# SDK offers a way to create client C# applications that can be integrated with Zoho CRM. This SDK makes the access and use of necessary CRM APIs with ease.</Summary>
 		<PackageTags>ZCRMSDK,zohocrm,sdk,zcrmsdk,zoho</PackageTags>
 		<Title>ZCRMSDK</Title>
-		<PackageReleaseNotes>Handled different field types.</PackageReleaseNotes>
+		<PackageReleaseNotes>Supported External ID</PackageReleaseNotes>
   	</PropertyGroup>
   	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<Optimize>true</Optimize>
@@ -88,6 +88,7 @@
 		<Compile Include="Com\Zoho\Crm\API\ContactRoles\ActionResponse.cs" />
 		<Compile Include="Com\Zoho\Crm\API\ContactRoles\ActionHandler.cs" />
 		<Compile Include="Com\Zoho\Crm\API\ContactRoles\ContactRolesOperations.cs" />
+		<Compile Include="Com\Zoho\Crm\API\Record\CarryOverTags.cs" />
 		<Compile Include="Com\Zoho\Crm\API\ContactRoles\BodyWrapper.cs" />
 		<Compile Include="Com\Zoho\Crm\API\ContactRoles\APIException.cs" />
 		<Compile Include="Com\Zoho\Crm\API\ContactRoles\ActionWrapper.cs" />
@@ -451,11 +452,8 @@
 	<ItemGroup>
 		<None Include="app.config" />
 		<None Include="packages.config" />
+		<None Include="readme.txt" pack="true" PackagePath="readme.txt" />
 	</ItemGroup>
-	<!-- <ItemGroup>
-		<EmbeddedResource Include="JsonDetails.json" />
-		<EmbeddedResource Include="recordFieldDetails.json" />
-	</ItemGroup> -->
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\JSONDetails.json" />
 	</ItemGroup>

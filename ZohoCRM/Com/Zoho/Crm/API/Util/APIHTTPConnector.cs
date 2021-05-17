@@ -174,6 +174,8 @@ namespace Com.Zoho.Crm.API.Util
                 SDKLogger.LogInfo(this.ProxyLog(requestProxy));
             }
 
+            requestObj.Timeout = Initializer.GetInitializer().SDKConfig.Timeout;
+
             SetRequestMethod(requestObj);
 
             if (contentType != null)

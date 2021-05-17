@@ -138,6 +138,11 @@ namespace Com.Zoho.Crm.API
                     throw new SDKException(Constants.INITIALIZATION_ERROR, Constants.RESOURCE_PATH_ERROR_MESSAGE);
                 }
 
+                if (!Directory.Exists(resourcePath))
+                {
+                    throw new SDKException(Constants.INITIALIZATION_ERROR, Constants.RESOURCE_PATH_INVALID_ERROR_MESSAGE);
+                }
+
                 if (logger == null)
                 {
                     logger = Logger.Logger.GetInstance(Logger.Logger.Levels.INFO, Path.GetDirectoryName(Assembly.GetCallingAssembly().Location) + Path.DirectorySeparatorChar + Constants.LOG_FILE_NAME);

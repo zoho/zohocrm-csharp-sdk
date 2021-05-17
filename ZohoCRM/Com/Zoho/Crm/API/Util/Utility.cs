@@ -51,6 +51,7 @@ namespace Com.Zoho.Crm.API.Util
 
         private static bool forceRefresh = false;
 
+        private static string moduleAPIName;
 
         /// <summary>
         /// This method to fetch field details of the current module for the current user and store the result in a JSON file.
@@ -58,6 +59,16 @@ namespace Com.Zoho.Crm.API.Util
         /// <param name="moduleAPIName">A String containing the CRM module API name.</param>
 
         public static void GetFields(string moduleAPIName)
+        {
+            lock (LOCK)
+            {
+                Utility.moduleAPIName = moduleAPIName;
+
+                GetFieldsInfo(Utility.moduleAPIName);
+            }
+        }
+
+        public static void GetFieldsInfo(string moduleAPIName)
         {
             lock (LOCK)
             {
@@ -355,7 +366,7 @@ namespace Com.Zoho.Crm.API.Util
 
 				foreach (string module in modifiedModules)
 			    {
-				    GetFields(module);
+                    GetFieldsInfo(module);
 			    }
 		    }
 	    }
@@ -492,7 +503,7 @@ namespace Com.Zoho.Crm.API.Util
                     {
                         commonAPIHandler.ModuleAPIName = (string)relatedListJO[Constants.MODULE];
 
-                        GetFields((string)relatedListJO[Constants.MODULE]);
+                        GetFieldsInfo((string)relatedListJO[Constants.MODULE]);
                     }
 
 				    return true;
@@ -657,8 +668,15 @@ namespace Com.Zoho.Crm.API.Util
 					    errorResponse.Add(Constants.STATUS, exception.Status.Value);
 					
 					    errorResponse.Add(Constants.MESSAGE, exception.Message.Value);
-					
-					    throw new SDKException(Constants.API_EXCEPTION, errorResponse);
+
+                        SDKException exception1 = new SDKException(Constants.API_EXCEPTION, errorResponse);
+
+                        if (Utility.moduleAPIName.ToLower().Equals(moduleAPIName.ToLower()))
+                        {
+                            throw exception1;
+                        }
+
+                        SDKLogger.LogError(JsonConvert.SerializeObject(exception1));
 				    }
 			    }
 			    else
@@ -676,7 +694,7 @@ namespace Com.Zoho.Crm.API.Util
 
         public static JObject SearchJSONDetails(string key)
         {
-            key = Constants.PACKAGE_NAMESPACE + ".Record" + key;
+            key = Constants.PACKAGE_NAMESPACE + ".Record." + key;
 
             foreach(KeyValuePair<string, JToken> member in JSONDETAILS)
             {
@@ -695,6 +713,11 @@ namespace Com.Zoho.Crm.API.Util
             }
 
             return null;
+        }
+
+        public static void VerifyPhotoSupport(string moduleAPIName)
+        {
+            return;
         }
 
         private static List<string> GetModules(string header)
@@ -764,7 +787,7 @@ namespace Com.Zoho.Crm.API.Util
             {
                 forceRefresh = true;
 
-                GetFields(null);
+                GetFieldsInfo(null);
 
                 forceRefresh = false;
             }
@@ -943,7 +966,7 @@ namespace Com.Zoho.Crm.API.Util
 
             if (module.Length > 0)
             {
-                Utility.GetFields(module);
+                Utility.GetFieldsInfo(module);
             }
 
             fieldDetail.Add(Constants.NAME, keyName);

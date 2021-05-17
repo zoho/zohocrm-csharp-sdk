@@ -50,8 +50,9 @@ namespace Com.Zoho.Crm.API.Record
 		/// <param name="id">long?</param>
 		/// <param name="moduleAPIName">string</param>
 		/// <param name="request">Instance of BodyWrapper</param>
+		/// <param name="headerInstance">Instance of HeaderMap</param>
 		/// <returns>Instance of APIResponse<ActionHandler></returns>
-		public APIResponse<ActionHandler> UpdateRecord(long? id, string moduleAPIName, BodyWrapper request)
+		public APIResponse<ActionHandler> UpdateRecord(long? id, string moduleAPIName, BodyWrapper request, HeaderMap headerInstance)
 		{
 			CommonAPIHandler handlerInstance=new CommonAPIHandler();
 
@@ -75,6 +76,8 @@ namespace Com.Zoho.Crm.API.Record
 
 			handlerInstance.Request=request;
 
+			handlerInstance.Header=headerInstance;
+
 			Utility.GetFields(moduleAPIName);
 
 			handlerInstance.ModuleAPIName=moduleAPIName;
@@ -88,8 +91,9 @@ namespace Com.Zoho.Crm.API.Record
 		/// <param name="id">long?</param>
 		/// <param name="moduleAPIName">string</param>
 		/// <param name="paramInstance">Instance of ParameterMap</param>
+		/// <param name="headerInstance">Instance of HeaderMap</param>
 		/// <returns>Instance of APIResponse<ActionHandler></returns>
-		public APIResponse<ActionHandler> DeleteRecord(long? id, string moduleAPIName, ParameterMap paramInstance)
+		public APIResponse<ActionHandler> DeleteRecord(long? id, string moduleAPIName, ParameterMap paramInstance, HeaderMap headerInstance)
 		{
 			CommonAPIHandler handlerInstance=new CommonAPIHandler();
 
@@ -110,6 +114,8 @@ namespace Com.Zoho.Crm.API.Record
 			handlerInstance.CategoryMethod=Constants.REQUEST_METHOD_DELETE;
 
 			handlerInstance.Param=paramInstance;
+
+			handlerInstance.Header=headerInstance;
 
 			return handlerInstance.APICall<ActionHandler>(typeof(ActionHandler), "application/json");
 
@@ -188,8 +194,9 @@ namespace Com.Zoho.Crm.API.Record
 		/// <summary>The method to update records</summary>
 		/// <param name="moduleAPIName">string</param>
 		/// <param name="request">Instance of BodyWrapper</param>
+		/// <param name="headerInstance">Instance of HeaderMap</param>
 		/// <returns>Instance of APIResponse<ActionHandler></returns>
-		public APIResponse<ActionHandler> UpdateRecords(string moduleAPIName, BodyWrapper request)
+		public APIResponse<ActionHandler> UpdateRecords(string moduleAPIName, BodyWrapper request, HeaderMap headerInstance)
 		{
 			CommonAPIHandler handlerInstance=new CommonAPIHandler();
 
@@ -211,6 +218,8 @@ namespace Com.Zoho.Crm.API.Record
 
 			handlerInstance.MandatoryChecker=true;
 
+			handlerInstance.Header=headerInstance;
+
 			Utility.GetFields(moduleAPIName);
 
 			handlerInstance.ModuleAPIName=moduleAPIName;
@@ -223,8 +232,9 @@ namespace Com.Zoho.Crm.API.Record
 		/// <summary>The method to delete records</summary>
 		/// <param name="moduleAPIName">string</param>
 		/// <param name="paramInstance">Instance of ParameterMap</param>
+		/// <param name="headerInstance">Instance of HeaderMap</param>
 		/// <returns>Instance of APIResponse<ActionHandler></returns>
-		public APIResponse<ActionHandler> DeleteRecords(string moduleAPIName, ParameterMap paramInstance)
+		public APIResponse<ActionHandler> DeleteRecords(string moduleAPIName, ParameterMap paramInstance, HeaderMap headerInstance)
 		{
 			CommonAPIHandler handlerInstance=new CommonAPIHandler();
 
@@ -242,6 +252,8 @@ namespace Com.Zoho.Crm.API.Record
 
 			handlerInstance.Param=paramInstance;
 
+			handlerInstance.Header=headerInstance;
+
 			return handlerInstance.APICall<ActionHandler>(typeof(ActionHandler), "application/json");
 
 
@@ -250,8 +262,9 @@ namespace Com.Zoho.Crm.API.Record
 		/// <summary>The method to upsert records</summary>
 		/// <param name="moduleAPIName">string</param>
 		/// <param name="request">Instance of BodyWrapper</param>
+		/// <param name="headerInstance">Instance of HeaderMap</param>
 		/// <returns>Instance of APIResponse<ActionHandler></returns>
-		public APIResponse<ActionHandler> UpsertRecords(string moduleAPIName, BodyWrapper request)
+		public APIResponse<ActionHandler> UpsertRecords(string moduleAPIName, BodyWrapper request, HeaderMap headerInstance)
 		{
 			CommonAPIHandler handlerInstance=new CommonAPIHandler();
 
@@ -272,6 +285,8 @@ namespace Com.Zoho.Crm.API.Record
 			handlerInstance.ContentType="application/json";
 
 			handlerInstance.Request=request;
+
+			handlerInstance.Header=headerInstance;
 
 			Utility.GetFields(moduleAPIName);
 
@@ -317,8 +332,9 @@ namespace Com.Zoho.Crm.API.Record
 		/// <summary>The method to search records</summary>
 		/// <param name="moduleAPIName">string</param>
 		/// <param name="paramInstance">Instance of ParameterMap</param>
+		/// <param name="headerInstance">Instance of HeaderMap</param>
 		/// <returns>Instance of APIResponse<ResponseHandler></returns>
-		public APIResponse<ResponseHandler> SearchRecords(string moduleAPIName, ParameterMap paramInstance)
+		public APIResponse<ResponseHandler> SearchRecords(string moduleAPIName, ParameterMap paramInstance, HeaderMap headerInstance)
 		{
 			CommonAPIHandler handlerInstance=new CommonAPIHandler();
 
@@ -337,6 +353,8 @@ namespace Com.Zoho.Crm.API.Record
 			handlerInstance.CategoryMethod=Constants.REQUEST_CATEGORY_READ;
 
 			handlerInstance.Param=paramInstance;
+
+			handlerInstance.Header=headerInstance;
 
 			Utility.GetFields(moduleAPIName);
 
@@ -445,6 +463,8 @@ namespace Com.Zoho.Crm.API.Record
 			handlerInstance.Request=request;
 
 			handlerInstance.MandatoryChecker=true;
+
+			Utility.VerifyPhotoSupport(moduleAPIName);
 
 			return handlerInstance.APICall<FileHandler>(typeof(FileHandler), "application/json");
 
@@ -566,12 +586,25 @@ namespace Com.Zoho.Crm.API.Record
 		public static class GetRecordHeader
 		{
 			public static readonly Header<DateTimeOffset?> IF_MODIFIED_SINCE=new Header<DateTimeOffset?>("If-Modified-Since", "com.zoho.crm.api.Record.GetRecordHeader");
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.Record.GetRecordHeader");
+		}
+
+
+		public static class UpdateRecordHeader
+		{
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.Record.UpdateRecordHeader");
 		}
 
 
 		public static class DeleteRecordParam
 		{
 			public static readonly Param<string> WF_TRIGGER=new Param<string>("wf_trigger", "com.zoho.crm.api.Record.DeleteRecordParam");
+		}
+
+
+		public static class DeleteRecordHeader
+		{
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.Record.DeleteRecordHeader");
 		}
 
 
@@ -597,6 +630,13 @@ namespace Com.Zoho.Crm.API.Record
 		public static class GetRecordsHeader
 		{
 			public static readonly Header<DateTimeOffset?> IF_MODIFIED_SINCE=new Header<DateTimeOffset?>("If-Modified-Since", "com.zoho.crm.api.Record.GetRecordsHeader");
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.Record.GetRecordsHeader");
+		}
+
+
+		public static class UpdateRecordsHeader
+		{
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.Record.UpdateRecordsHeader");
 		}
 
 
@@ -604,6 +644,18 @@ namespace Com.Zoho.Crm.API.Record
 		{
 			public static readonly Param<long?> IDS=new Param<long?>("ids", "com.zoho.crm.api.Record.DeleteRecordsParam");
 			public static readonly Param<string> WF_TRIGGER=new Param<string>("wf_trigger", "com.zoho.crm.api.Record.DeleteRecordsParam");
+		}
+
+
+		public static class DeleteRecordsHeader
+		{
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.Record.DeleteRecordsHeader");
+		}
+
+
+		public static class UpsertRecordsHeader
+		{
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.Record.UpsertRecordsHeader");
 		}
 
 
@@ -631,6 +683,12 @@ namespace Com.Zoho.Crm.API.Record
 			public static readonly Param<string> APPROVED=new Param<string>("approved", "com.zoho.crm.api.Record.SearchRecordsParam");
 			public static readonly Param<int?> PAGE=new Param<int?>("page", "com.zoho.crm.api.Record.SearchRecordsParam");
 			public static readonly Param<int?> PER_PAGE=new Param<int?>("per_page", "com.zoho.crm.api.Record.SearchRecordsParam");
+		}
+
+
+		public static class SearchRecordsHeader
+		{
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.Record.SearchRecordsHeader");
 		}
 
 
