@@ -184,8 +184,9 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 		/// <summary>The method to update related record</summary>
 		/// <param name="relatedRecordId">long?</param>
 		/// <param name="request">Instance of BodyWrapper</param>
+		/// <param name="headerInstance">Instance of HeaderMap</param>
 		/// <returns>Instance of APIResponse<ActionHandler></returns>
-		public APIResponse<ActionHandler> UpdateRelatedRecord(long? relatedRecordId, BodyWrapper request)
+		public APIResponse<ActionHandler> UpdateRelatedRecord(long? relatedRecordId, BodyWrapper request, HeaderMap headerInstance)
 		{
 			CommonAPIHandler handlerInstance=new CommonAPIHandler();
 
@@ -217,6 +218,8 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 
 			handlerInstance.Request=request;
 
+			handlerInstance.Header=headerInstance;
+
 			Utility.GetRelatedLists( this.relatedListAPIName,  this.moduleAPIName, handlerInstance);
 
 			return handlerInstance.APICall<ActionHandler>(typeof(ActionHandler), "application/json");
@@ -226,8 +229,9 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 
 		/// <summary>The method to delink record</summary>
 		/// <param name="relatedRecordId">long?</param>
+		/// <param name="headerInstance">Instance of HeaderMap</param>
 		/// <returns>Instance of APIResponse<ActionHandler></returns>
-		public APIResponse<ActionHandler> DelinkRecord(long? relatedRecordId)
+		public APIResponse<ActionHandler> DelinkRecord(long? relatedRecordId, HeaderMap headerInstance)
 		{
 			CommonAPIHandler handlerInstance=new CommonAPIHandler();
 
@@ -255,6 +259,8 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 
 			handlerInstance.CategoryMethod=Constants.REQUEST_METHOD_DELETE;
 
+			handlerInstance.Header=headerInstance;
+
 			return handlerInstance.APICall<ActionHandler>(typeof(ActionHandler), "application/json");
 
 
@@ -271,6 +277,7 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 		public static class GetRelatedRecordsHeader
 		{
 			public static readonly Header<DateTimeOffset?> IF_MODIFIED_SINCE=new Header<DateTimeOffset?>("If-Modified-Since", "com.zoho.crm.api.RelatedRecords.GetRelatedRecordsHeader");
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.GetRelatedRecordsHeader");
 		}
 
 
@@ -283,6 +290,18 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 		public static class GetRelatedRecordHeader
 		{
 			public static readonly Header<DateTimeOffset?> IF_MODIFIED_SINCE=new Header<DateTimeOffset?>("If-Modified-Since", "com.zoho.crm.api.RelatedRecords.GetRelatedRecordHeader");
+		}
+
+
+		public static class UpdateRelatedRecordHeader
+		{
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.UpdateRelatedRecordHeader");
+		}
+
+
+		public static class DelinkRecordHeader
+		{
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.DelinkRecordHeader");
 		}
 
 	}

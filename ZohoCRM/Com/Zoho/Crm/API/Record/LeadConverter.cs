@@ -13,6 +13,7 @@ namespace Com.Zoho.Crm.API.Record
 		private string contacts;
 		private string assignTo;
 		private Record deals;
+		private CarryOverTags carryOverTags;
 		private Dictionary<string, int?> keyModified=new Dictionary<string, int?>();
 
 		public bool? Overwrite
@@ -151,6 +152,26 @@ namespace Com.Zoho.Crm.API.Record
 				 this.deals=value;
 
 				 this.keyModified["Deals"] = 1;
+
+			}
+		}
+
+		public CarryOverTags CarryOverTags
+		{
+			/// <summary>The method to get the carryOverTags</summary>
+			/// <returns>Instance of CarryOverTags</returns>
+			get
+			{
+				return  this.carryOverTags;
+
+			}
+			/// <summary>The method to set the value to carryOverTags</summary>
+			/// <param name="carryOverTags">Instance of CarryOverTags</param>
+			set
+			{
+				 this.carryOverTags=value;
+
+				 this.keyModified["carry_over_tags"] = 1;
 
 			}
 		}

@@ -48,7 +48,7 @@ namespace Com.Zoho.Crm.API.Util
         }
 
         /// <summary>
-        /// This abstract method is to process the API response. 
+        /// This abstract method is to process the API response.
         /// </summary>
         /// <param name="response">A object containing the API response contents or response. </param>
         /// <param name="pack">A string containing the expected method return type.</param>
@@ -73,7 +73,7 @@ namespace Com.Zoho.Crm.API.Util
         public abstract void AppendToRequest(HttpWebRequest requestBase, object requestObject);
 
         /// <summary>
-        /// This abstract method is to process the API response. 
+        /// This abstract method is to process the API response.
         /// </summary>
         /// <param name="response">A object containing the HttpResponse class instance.</param>
         /// <param name="pack">A string containing the expected method return type.</param>
@@ -90,11 +90,103 @@ namespace Com.Zoho.Crm.API.Util
         /// <param name="uniqueValuesMap">A Dictionary&lt;string,List&lt;object&gt;&gt; containing the construct objects.</param>
         /// <param name="instanceNumber">An int containing the POJO class instance list number.</param>
         /// <returns>A bool representing the key value is expected pattern, unique, length, and values.</returns>
-        public bool ValueChecker(string className, string memberName, JObject keyDetails, object value, Dictionary<string, List<object>> uniqueValuesMap, int? instanceNumber) 
-        { 
+        public bool ValueChecker(string className, string memberName, JObject keyDetails, object value, Dictionary<string, List<object>> uniqueValuesMap, int? instanceNumber)
+        {
             JObject detailsJO = new JObject();
 
             string name = keyDetails.GetValue(Constants.NAME).ToString();
+
+            string type = keyDetails.GetValue(Constants.TYPE).ToString();
+
+            string varType = null;
+
+            bool check = true;
+
+            if (value != null)
+            {
+                var valueType = value.GetType();
+
+                if(value is IList)
+                {
+                    varType = valueType.Namespace + "." + valueType.Name;
+                }
+                else
+                {
+                    varType = valueType.Namespace + "." + valueType.Name.Replace("`1","");
+                }
+
+                check = varType.Equals(type, StringComparison.OrdinalIgnoreCase);
+            }
+
+            if (value is IList)
+		    {
+                bool expectedListType = true;
+
+                if (keyDetails.ContainsKey(Constants.STRUCTURE_NAME))
+                {
+                    string structureName = keyDetails.GetValue(Constants.STRUCTURE_NAME).ToString();
+
+                    int index = 0;
+
+                    IList listValue = (IList)value;
+
+                    foreach (object data in listValue)
+                    {
+                        var dataType = data.GetType();
+
+                        if (data is IList)
+                        {
+                            className = dataType.Namespace + "." + dataType.Name;
+                        }
+                        else
+                        {
+                            className = dataType.Namespace + "." + dataType.Name.Replace("`1", "");
+                        }
+
+                        if (!className.Equals(structureName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            instanceNumber = index;
+
+                            type = Constants.LIST_NAMESPACE + "(" + structureName + ")";
+
+                            varType = Constants.LIST_NAMESPACE + "(" + className + ")";
+
+                            expectedListType = false;
+
+                            check = false;
+
+                            break;
+                        }
+
+                        index++;
+                    }
+                }
+
+                if (expectedListType)
+                {
+                    check = varType.Equals(type, StringComparison.OrdinalIgnoreCase) ? true : varType.Equals(Constants.LIST_NAMESPACE);
+                }
+            }
+
+            else if (value is IDictionary)
+		    {
+                check = varType.Equals(type) ? true : varType.Equals(Constants.MAP_NAMESPACE, StringComparison.OrdinalIgnoreCase);
+            }
+
+            if (!check && !type.Equals(Constants.CSHARP_OBJECT_NAME, StringComparison.OrdinalIgnoreCase))
+            {
+                detailsJO.Add(Constants.FIELD, memberName);
+
+                detailsJO.Add(Constants.CLASS, className);
+
+                detailsJO.Add(Constants.INDEX, instanceNumber);
+
+                detailsJO.Add(Constants.EXPECTED_TYPE, type);
+
+                detailsJO.Add(Constants.GIVEN_TYPE, varType);
+
+                throw new SDKException(Constants.TYPE_ERROR, detailsJO);
+            }
 
             if (keyDetails.ContainsKey(Constants.VALUES) && (!keyDetails.ContainsKey(Constants.PICKLIST) || ((bool)keyDetails[Constants.PICKLIST] && Initializer.GetInitializer().SDKConfig.PickListValidation)))
             {
@@ -118,6 +210,8 @@ namespace Com.Zoho.Crm.API.Util
                         detailsJO.Add(Constants.INDEX, instanceNumber);
                     }
 
+                    detailsJO.Add(Constants.GIVEN_VALUE, JsonConvert.SerializeObject(value));
+
                     detailsJO.Add(Constants.ACCEPTED_VALUES, valuesJArray);
 
                     throw new SDKException(Constants.UNACCEPTED_VALUES_ERROR, detailsJO);
@@ -125,7 +219,7 @@ namespace Com.Zoho.Crm.API.Util
             }
 
             if (keyDetails.ContainsKey(Constants.UNIQUE))
-            {   
+            {
                 List<object> valuesArray = uniqueValuesMap.ContainsKey(name)? uniqueValuesMap[name] : null;
 
                 if (valuesArray != null && valuesArray.Contains(value))
@@ -283,7 +377,7 @@ namespace Com.Zoho.Crm.API.Util
             {
                 type = Constants.CSHARP_INT_NAME;
             }
-            
+
             return type;
         }
     }

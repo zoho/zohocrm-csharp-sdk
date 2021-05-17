@@ -304,7 +304,7 @@ namespace Com.Zoho.Crm.API.Util
 
             Converter convertInstance = null;
 
-            if (contentType != null && (httpMethod.Equals(Constants.REQUEST_METHOD_POST) || httpMethod.Equals(Constants.REQUEST_METHOD_PUT) || httpMethod.Equals(Constants.REQUEST_METHOD_PATCH)))
+            if (contentType != null && Constants.IS_GENERATE_REQUEST_BODY.Contains(httpMethod))
             {
                 object request;
 
