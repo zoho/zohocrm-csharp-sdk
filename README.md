@@ -56,7 +56,7 @@ You can include the SDK to your project using:
     - Package Manager
 
         ```sh
-        Install-Package ZCRMSDK -Version 3.1.0
+        Install-Package ZCRMSDK -Version 3.2.0
         Install-Package MySql.Data -Version 6.9.12
         Install-Package Newtonsoft.Json -Version 11.0.1
         ```
@@ -64,7 +64,7 @@ You can include the SDK to your project using:
     - .NET  CLI
 
         ```sh
-        dotnet add package ZCRMSDK --version 3.1.0
+        dotnet add package ZCRMSDK --version 3.2.0
         dotnet add package Newtonsoft.Json --version 11.0.1
         dotnet add package MySql.Data --version 6.9.12
         ```
@@ -75,7 +75,7 @@ You can include the SDK to your project using:
 
         ```sh
         <ItemGroup>
-            <PackageReference Include="ZCRMSDK" Version="3.1.0" />
+            <PackageReference Include="ZCRMSDK" Version="3.2.0" />
             <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
             <PackageReference Include="MySql.Data" Version="6.9.12" />
         </ItemGroup>

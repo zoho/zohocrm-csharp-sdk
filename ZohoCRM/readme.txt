@@ -1,15 +1,15 @@
 ﻿————————————————————————
-Zoho CRM C# SDK 3.1.0
+Zoho CRM C# SDK 3.2.0
 ————————————————————————
 
-This is the readme file for Zoho CRM’s C# SDK version 3.1.0.
+This is the readme file for Zoho CRM’s C# SDK version 3.2.0.
 
 This file gives a brief of the enhancements and/or bug fixes in the latest version.
 
 ----------------
 Enhancements
 ----------------
-    - Supported External ID
+    - Supported Related Records External ID
 
 ----------------
 Bug Fixes

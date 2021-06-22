@@ -99,7 +99,7 @@ namespace Com.Zoho.Crm.API.Util
 
         public static readonly string ZOHO_SDK = "X-ZOHO-SDK";
 
-        public static readonly string SDK_VERSION = "3.1.0";
+        public static readonly string SDK_VERSION = "3.2.0";
 
         public static readonly string MODULEPACKAGENAME = "modulePackageName";
 

@@ -10,19 +10,23 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 		private string moduleAPIName;
 		private long? recordId;
 		private string relatedListAPIName;
+		private string xExternal;
 
 		/// <summary>		/// Creates an instance of RelatedRecordsOperations with the given parameters
 		/// <param name="relatedListAPIName">string</param>
 		/// <param name="recordId">long?</param>
 		/// <param name="moduleAPIName">string</param>
+		/// <param name="xExternal">string</param>
 		
-		public RelatedRecordsOperations(string relatedListAPIName, long? recordId, string moduleAPIName)
+		public RelatedRecordsOperations(string relatedListAPIName, long? recordId, string moduleAPIName, string xExternal)
 		{
 			 this.relatedListAPIName=relatedListAPIName;
 
 			 this.recordId=recordId;
 
 			 this.moduleAPIName=moduleAPIName;
+
+			 this.xExternal=xExternal;
 
 
 		}
@@ -54,6 +58,8 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 			handlerInstance.HttpMethod=Constants.REQUEST_METHOD_GET;
 
 			handlerInstance.CategoryMethod=Constants.REQUEST_CATEGORY_READ;
+
+			handlerInstance.AddHeader(new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.GetRelatedRecordsHeader"),  this.xExternal);
 
 			handlerInstance.Param=paramInstance;
 
@@ -99,6 +105,8 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 
 			handlerInstance.MandatoryChecker=true;
 
+			handlerInstance.AddHeader(new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.UpdateRelatedRecordsHeader"),  this.xExternal);
+
 			Utility.GetRelatedLists( this.relatedListAPIName,  this.moduleAPIName, handlerInstance);
 
 			return handlerInstance.APICall<ActionHandler>(typeof(ActionHandler), "application/json");
@@ -132,6 +140,8 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 			handlerInstance.HttpMethod=Constants.REQUEST_METHOD_DELETE;
 
 			handlerInstance.CategoryMethod=Constants.REQUEST_METHOD_DELETE;
+
+			handlerInstance.AddHeader(new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.DelinkRecordsHeader"),  this.xExternal);
 
 			handlerInstance.Param=paramInstance;
 
@@ -172,6 +182,8 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 
 			handlerInstance.CategoryMethod=Constants.REQUEST_CATEGORY_READ;
 
+			handlerInstance.AddHeader(new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.GetRelatedRecordHeader"),  this.xExternal);
+
 			handlerInstance.Header=headerInstance;
 
 			Utility.GetRelatedLists( this.relatedListAPIName,  this.moduleAPIName, handlerInstance);
@@ -184,9 +196,8 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 		/// <summary>The method to update related record</summary>
 		/// <param name="relatedRecordId">long?</param>
 		/// <param name="request">Instance of BodyWrapper</param>
-		/// <param name="headerInstance">Instance of HeaderMap</param>
 		/// <returns>Instance of APIResponse<ActionHandler></returns>
-		public APIResponse<ActionHandler> UpdateRelatedRecord(long? relatedRecordId, BodyWrapper request, HeaderMap headerInstance)
+		public APIResponse<ActionHandler> UpdateRelatedRecord(long? relatedRecordId, BodyWrapper request)
 		{
 			CommonAPIHandler handlerInstance=new CommonAPIHandler();
 
@@ -218,7 +229,7 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 
 			handlerInstance.Request=request;
 
-			handlerInstance.Header=headerInstance;
+			handlerInstance.AddHeader(new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.UpdateRelatedRecordHeader"),  this.xExternal);
 
 			Utility.GetRelatedLists( this.relatedListAPIName,  this.moduleAPIName, handlerInstance);
 
@@ -229,9 +240,8 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 
 		/// <summary>The method to delink record</summary>
 		/// <param name="relatedRecordId">long?</param>
-		/// <param name="headerInstance">Instance of HeaderMap</param>
 		/// <returns>Instance of APIResponse<ActionHandler></returns>
-		public APIResponse<ActionHandler> DelinkRecord(long? relatedRecordId, HeaderMap headerInstance)
+		public APIResponse<ActionHandler> DelinkRecord(long? relatedRecordId)
 		{
 			CommonAPIHandler handlerInstance=new CommonAPIHandler();
 
@@ -259,11 +269,17 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 
 			handlerInstance.CategoryMethod=Constants.REQUEST_METHOD_DELETE;
 
-			handlerInstance.Header=headerInstance;
+			handlerInstance.AddHeader(new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.DelinkRecordHeader"),  this.xExternal);
 
 			return handlerInstance.APICall<ActionHandler>(typeof(ActionHandler), "application/json");
 
 
+		}
+
+
+		public static class GetRelatedRecordsHeader
+		{
+			public static readonly Header<DateTimeOffset?> IF_MODIFIED_SINCE=new Header<DateTimeOffset?>("If-Modified-Since", "com.zoho.crm.api.RelatedRecords.GetRelatedRecordsHeader");
 		}
 
 
@@ -274,10 +290,13 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 		}
 
 
-		public static class GetRelatedRecordsHeader
+		public static class UpdateRelatedRecordsHeader
 		{
-			public static readonly Header<DateTimeOffset?> IF_MODIFIED_SINCE=new Header<DateTimeOffset?>("If-Modified-Since", "com.zoho.crm.api.RelatedRecords.GetRelatedRecordsHeader");
-			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.GetRelatedRecordsHeader");
+		}
+
+
+		public static class DelinkRecordsHeader
+		{
 		}
 
 
@@ -295,13 +314,11 @@ namespace Com.Zoho.Crm.API.RelatedRecords
 
 		public static class UpdateRelatedRecordHeader
 		{
-			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.UpdateRelatedRecordHeader");
 		}
 
 
 		public static class DelinkRecordHeader
 		{
-			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.DelinkRecordHeader");
 		}
 
 	}

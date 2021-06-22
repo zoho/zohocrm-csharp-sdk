@@ -49,9 +49,7 @@ namespace Com.Zoho.Crm.API
 			/// <returns>An instance of Builder</returns>
 			public Builder Timeout(int timeout)
 			{
-				this.timeout = timeout;
-
-				this.timeout = timeout != 100 ? timeout: 100;
+				this.timeout = timeout != 100000 ? timeout: 100000;
 
 				return this;
 			}

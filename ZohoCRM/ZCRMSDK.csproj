@@ -17,7 +17,7 @@
 		</NuGetPackageImportStamp>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageId>ZCRMSDK</PackageId>
-		<PackageVersion>3.1.0</PackageVersion>
+		<PackageVersion>3.2.0</PackageVersion>
 		<Authors>Zoho CRM API Team</Authors>
 		<Owners>Zoho CRM API Team</Owners>
 		<Description>Provides C# SDK support for Zoho CRM APIs.</Description>
@@ -25,7 +25,7 @@
 		<Summary>C# SDK offers a way to create client C# applications that can be integrated with Zoho CRM. This SDK makes the access and use of necessary CRM APIs with ease.</Summary>
 		<PackageTags>ZCRMSDK,zohocrm,sdk,zcrmsdk,zoho</PackageTags>
 		<Title>ZCRMSDK</Title>
-		<PackageReleaseNotes>Supported External ID</PackageReleaseNotes>
+		<PackageReleaseNotes>Supported Related Records External ID</PackageReleaseNotes>
   	</PropertyGroup>
   	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<Optimize>true</Optimize>

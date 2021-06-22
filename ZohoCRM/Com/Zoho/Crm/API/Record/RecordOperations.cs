@@ -159,8 +159,9 @@ namespace Com.Zoho.Crm.API.Record
 		/// <summary>The method to create records</summary>
 		/// <param name="moduleAPIName">string</param>
 		/// <param name="request">Instance of BodyWrapper</param>
+		/// <param name="headerInstance">Instance of HeaderMap</param>
 		/// <returns>Instance of APIResponse<ActionHandler></returns>
-		public APIResponse<ActionHandler> CreateRecords(string moduleAPIName, BodyWrapper request)
+		public APIResponse<ActionHandler> CreateRecords(string moduleAPIName, BodyWrapper request, HeaderMap headerInstance)
 		{
 			CommonAPIHandler handlerInstance=new CommonAPIHandler();
 
@@ -181,6 +182,8 @@ namespace Com.Zoho.Crm.API.Record
 			handlerInstance.Request=request;
 
 			handlerInstance.MandatoryChecker=true;
+
+			handlerInstance.Header=headerInstance;
 
 			Utility.GetFields(moduleAPIName);
 
@@ -631,6 +634,12 @@ namespace Com.Zoho.Crm.API.Record
 		{
 			public static readonly Header<DateTimeOffset?> IF_MODIFIED_SINCE=new Header<DateTimeOffset?>("If-Modified-Since", "com.zoho.crm.api.Record.GetRecordsHeader");
 			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.Record.GetRecordsHeader");
+		}
+
+
+		public static class CreateRecordsHeader
+		{
+			public static readonly Header<string> X_EXTERNAL=new Header<string>("X-EXTERNAL", "com.zoho.crm.api.Record.CreateRecordsHeader");
 		}
 
 
